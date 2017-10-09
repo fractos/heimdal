@@ -1,0 +1,13 @@
+{
+	"rules": [
+		{
+			"effect": "ALLOW",
+			"methods": [
+				"GET", "HEAD", "OPTIONS"
+			],
+			"source": [
+				"127.0.0.1/32"
+			]
+		}
+	]
+}
