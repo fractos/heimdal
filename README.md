@@ -44,6 +44,8 @@ The rules are encoded in a basic JSON format:
 
 This allows GET, HEAD, OPTIONS requests from anywhere, but only allows PUT, POST, PATCH operations from two distinct IP addresses.
 
+All non-matching traffic will receive a 403 Forbidden response immediately, without consulting the target.
+
 ## Installation and Running
 
 Heimdal needs to be installed behind a load balancer appliance or other proxy that adds an `X-Forwarded-For` header.
@@ -62,6 +64,14 @@ sudo docker run -d --rm \
     --env LISTENER_PORT='<listener port>' \
     --env TARGET_HOST='<target host>' \
     --env TARGET_PORT='<target port>' \
-    --vol <rules file>:/etc/heimdal/rules.json \
+    -v <absolute path to rules file>:/etc/heimdal/rules.json \
     heimdal
 ```
+
+**Note**
+
+Input for -v needs to be an absolute path.
+
+## Etymology
+
+Heimdal uses the `quickproxy` library which in turn uses the Tornado web server.
