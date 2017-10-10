@@ -1,0 +1,23 @@
+{
+  "rules": [
+    {
+      "effect": "ALLOW",
+      "methods": [
+        "GET", "HEAD", "OPTIONS"
+      ],
+      "source": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "effect": "ALLOW",
+      "methods": [
+        "PUT", "POST", "PATCH"
+      ],
+      "source": [
+        "46.102.195.175/32",
+        "62.254.125.126/32"
+      ]
+    }
+  ]
+}

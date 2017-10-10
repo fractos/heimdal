@@ -5,8 +5,8 @@ import socket,struct
 import settings
 
 def callback(request):
-    request.host = settings.HOST
-    request.port = settings.PORT
+    request.host = settings.TARGET_HOST
+    request.port = settings.TARGET_PORT
 
     first_remote_ip = '0.0.0.0'
 
@@ -47,4 +47,4 @@ def ip_passes(test_ip, test_method):
 
 rules = json.loads(open(settings.RULES_FILE).read())
 
-quickproxy.run_proxy(port=settings.PORT, req_callback=callback)
+quickproxy.run_proxy(port=settings.LISTENER_PORT, req_callback=callback)

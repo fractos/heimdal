@@ -48,12 +48,20 @@ This allows GET, HEAD, OPTIONS requests from anywhere, but only allows PUT, POST
 
 Heimdal needs to be installed behind a load balancer appliance or other proxy that adds an `X-Forwarded-For` header.
 
+You can pass a rules file for Heimdal to use with a Docker volume command, mapping a file into the container as `/etc/heimdal/rules.json`.
+
+| Environment Variable | Description                                                               | Mandatory |
+|----------------------|---------------------------------------------------------------------------|-----------|
+| `LISTENER_PORT`      | Heimdal's listening port for requests                                     | Yes       |
+| `TARGET_HOST`        | Proxy target hostname                                                     | Yes       |
+| `TARGET_PORT`        | Proxy target port                                                         | Yes       |
+| `RULES_FILE`         | Location of the rules file to use - defaults to `/etc/heimdal/rules.json` | No        |
+
 ```
 sudo docker run -d --rm \
-    --env AWS_ACCESS_KEY_ID='<access key id>' \
-    --env AWS_SECRET_ACCESS_KEY='<secret access key>' \
-    --env RULES_S3_URI='<s3 uri for rules file>' \
-    --env HOST='<target host>' \
-    --env PORT='<listening / target port>' \
+    --env LISTENER_PORT='<listener port>' \
+    --env TARGET_HOST='<target host>' \
+    --env TARGET_PORT='<target port>' \
+    --vol <rules file>:/etc/heimdal/rules.json \
     heimdal
 ```

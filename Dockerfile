@@ -5,6 +5,6 @@ COPY run_heimdal.sh /
 
 RUN pip install -r /opt/heimdal/requirements.txt
 
-ENV RULES_FILE /opt/heimdal/rules.json
+ENV RULES_FILE /etc/heimdal/rules.json
 
 CMD ["/run_heimdal.sh"]
