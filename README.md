@@ -18,16 +18,16 @@ The rules are encoded in a basic JSON format:
 
 ```
 {
-	"rules": [
-		{
-			"effect": "ALLOW",
-			"methods": [
-				"GET", "HEAD", "OPTIONS"
-			],
-			"source": [
-				"0.0.0.0/0"
-			]
-		},
+  "rules": [
+    {
+      "effect": "ALLOW",
+      "methods": [
+        "GET", "HEAD", "OPTIONS"
+      ],
+      "source": [
+        "0.0.0.0/0"
+      ]
+    },
     {
       "effect": "ALLOW",
       "methods": [
@@ -38,7 +38,7 @@ The rules are encoded in a basic JSON format:
         "62.254.125.126/32"
       ]
     }
-	]
+  ]
 }
 ```
 
