@@ -3,6 +3,7 @@ import quickproxy
 import json
 import socket,struct
 import settings
+from logzero import logger
 
 def callback(request):
     request.host = settings.TARGET_HOST
@@ -13,15 +14,15 @@ def callback(request):
     if request.headers.get('X-Forwarded-For'):
         first_remote_ip = request.headers['X-Forwarded-For'].split(", ")[0]
 
-    print('request received: (' + first_remote_ip + ') ' + request.method + ' ' + request.path)
+    logger.debug('request received: (' + first_remote_ip + ') ' + request.method + ' ' + request.path)
 
     allowed = ip_passes(first_remote_ip, request.method)
 
     if allowed:
-        print('allowed')
+        logger.info('allowed ' + request.method + ' request from ' + first_remote_ip)
         return request
 
-    print('denied')
+    logger.info('denied ' + request.method + ' request from ' + first_remote_ip)
 
     return quickproxy.ResponseObj(
         code=403,
@@ -40,7 +41,6 @@ def ip_passes(test_ip, test_method):
         for method in rule['methods']:
             if method == test_method:
                 for source in rule['source']:
-                    # print('considering ip ' + test_ip + ' against rule ' + rule['effect'] + ' ' + method + ' ' + source)
                     if address_in_network(test_ip, source):
                         return rule['effect'] == 'ALLOW' and True
     return False
