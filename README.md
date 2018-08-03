@@ -1,6 +1,7 @@
 # Heimdal
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/fractos/heimdal.svg?style=for-the-badge)](https://hub.docker.com/r/fractos/heimdal/)
+[![Build Status](https://travis-ci.org/fractos/heimdal.svg?branch=master)](https://travis-ci.org/fractos/heimdal)
 
 Heimdal is a Layer 7 web application firewall that selectively proxies traffic onto a target host based on CIDR matches for IP addresses and the HTTP methods allowed for that match.
 
